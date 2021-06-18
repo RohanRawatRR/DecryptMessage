@@ -1,0 +1,4 @@
+django==2.2
+djangorestframework==3.9.2
+gunicorn==20.0.4
+python-gnupg==0.4.7
