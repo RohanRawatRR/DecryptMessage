@@ -1,4 +1,4 @@
-import tempfile, os
+import re
 import gnupg
 from django.conf import settings
 from django.core.files.storage import default_storage
@@ -25,6 +25,8 @@ class DecryptMessageSerializer(serializers.Serializer):
         passphrase = validated_data['passphrase']
         message = validated_data['message']
 
+        if 'Version' in message:
+            message = re.sub("Version.*?\)", '', message)
         try:
             length_begin_msg = len("-----BEGIN PGP MESSAGE-----")
             length_end_msg = len("-----END PGP MESSAGE-----")
